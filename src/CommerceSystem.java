@@ -1,4 +1,3 @@
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -21,13 +20,17 @@ public class CommerceSystem {
 
             System.out.println("0. 종료          |프로그램 종료");
 
-
+            try {
                 int exit = scanner.nextInt();
                 if (exit == 0) {
                     System.out.println("커머스 플랫픔을 종료합니다.");
                     scanner.close();
                     break;
                 }
+            } catch (Exception e) {
+                System.out.println("1~4 중 입력하세요. (0은 종료)");
+                scanner.nextLine();
+            }
         }
     }
 }
