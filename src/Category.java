@@ -9,6 +9,10 @@ public class Category {
         this.products = products;
     }
 
+    public List<Product> getProducts() {
+        return products;
+    }
+
     // 구조에 맞게 메소드 선언
     public void electronics() {
         System.out.println("[전자제품 카테고리]");
@@ -53,6 +57,5 @@ public class Category {
             System.out.println((i + 1) + "." + p.getName() + "     |" + p.getPrice() +"|" + p.getExplanation());
         }
         System.out.println("0. 뒤로가기");
-
     }
 }

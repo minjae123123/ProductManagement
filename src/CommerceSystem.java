@@ -29,16 +29,19 @@ public class CommerceSystem {
                         //전자제품 카테고리
                         category.electronics();
                         if (select_product()) continue;
+                        products_clear(category);
                         break;
                     case 2:
                         //의류 카테고리
                         category.clothes();
                         if (select_product()) continue;
+                        products_clear(category);
                         break;
                     case 3:
                         //식품 카테고리
                         category.food();
                         if (select_product()) continue;
+                        products_clear(category);
                         break;
                 }
 
@@ -47,6 +50,11 @@ public class CommerceSystem {
                 scanner.nextLine();
             }
         }
+    }
+
+    private static void products_clear(Category category) {
+        List<Product> list = category.getProducts();
+        list.clear();
     }
 
     private boolean select_product() {
@@ -67,6 +75,8 @@ public class CommerceSystem {
                 Product p = products.get(3);
                 System.out.println("★ 선택한 상품: " + p.getName() + " | " + p.getPrice() + "원 | " + p.getExplanation() + "| 재고: " + p.getStock_quantity() + "개");
             }
+
+
         } catch (Exception e) {
             System.out.println("상품 번호를 입력해주세요");
             scanner.nextLine();
