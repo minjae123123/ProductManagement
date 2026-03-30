@@ -10,6 +10,7 @@ public class CommerceSystem {
 
     public void start() {
         Category category = new Category(products);
+        int sum = 0;
 
         while (true) {
             System.out.println("[실시간 커머스 플랫폼 메인]");
@@ -51,6 +52,32 @@ public class CommerceSystem {
                         if (select_product()) continue;
                         products_clear(category);
                         break;
+                    case 4:
+                        System.out.println("아래와 같이 주문하시겠습니까?");
+
+                        System.out.println("[장바구니 내역]");
+                        for (Product cart : carts) {
+                            System.out.println(cart.getName() + "|" + cart.getPrice()+ "|" + cart.getExplanation()+ "|");
+                        }
+
+                        System.out.println("[총 주문 금액]");
+                        for (Product cart : carts) {
+                            int price = cart.getPrice();
+                            sum += price;
+                        }
+                        System.out.println(sum + "원");
+
+                        System.out.println("1. 주문 확정    2. 메인으로 돌아가기");
+                        int confirm_order = scanner.nextInt();
+
+                        if(confirm_order == 1) {
+                            System.out.println("주문이 완료되었습니다! 총 금액: " + sum + "원");
+                            for (Product cart : carts) {
+                                System.out.println(cart.getName() + "의 재고가 " + cart.getStock_quantity() + "개 -> " + (cart.getStock_quantity() - 1) + "개로 업데이트되었습니다.");
+                            }
+                            sum = 0;
+                            carts.clear();
+                        }
                 }
             } catch (Exception e) {
                 System.out.println("1~3 중 입력하세요. (0은 종료)");
@@ -72,7 +99,6 @@ public class CommerceSystem {
             } else if (product_select == 1) {
                 Product p = products.get(0);
                 System.out.println("★ 선택한 상품: " + p.getName() + " | " + p.getPrice() + "원 | " + p.getExplanation() + "| 재고: " + p.getStock_quantity() + "개");
-                System.out.println(p.getName() + "|" + p.getPrice() + "|" + p.getExplanation());
                 add_carts(p);
             } else if (product_select == 2) {
                 Product p = products.get(1);
