@@ -106,4 +106,12 @@ public class Cart {
         carts.clear();
         System.out.println("진행중인 주문이 취소되었습니다.");
     }
+
+    public void removeDeletedProduct(Product product) {
+        if (carts.contains(product)) {
+            product.setCartCount(0);
+            carts.remove(product);
+            System.out.println("삭제된 상품이 장바구니에서 제거되었습니다.");
+        }
+    }
 }

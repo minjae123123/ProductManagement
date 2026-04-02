@@ -5,7 +5,8 @@ import java.util.Scanner;
 public class CommerceSystem {
     List<Product> products = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
-    Cart cartManager = new Cart(scanner);
+    Cart cart = new Cart(scanner);
+    Admin admin = new Admin(products, scanner, cart);
 
     public CommerceSystem() {
         products.add(new Product("전자제품", "Galaxy S24", 1200000, "최신 안드로이드 스마트폰", 15));
@@ -33,8 +34,9 @@ public class CommerceSystem {
             System.out.println("2. 의류");
             System.out.println("3. 식품");
             System.out.println("0. 종료          | 프로그램 종료");
+            System.out.println("관리자 모드");
 
-            if (!cartManager.isEmpty()) {
+            if (!cart.isEmpty()) {
                 System.out.println("[주문 관리]");
                 System.out.println("4. 장바구니 확인 및 결제");
                 System.out.println("5. 주문 취소");
@@ -63,10 +65,13 @@ public class CommerceSystem {
                         selectProduct("식품");
                         break;
                     case 4:
-                        cartManager.checkout();
+                        cart.checkout();
                         break;
                     case 5:
-                        cartManager.cancelOrder();
+                        cart.cancelOrder();
+                        break;
+                    case 6:
+                        admin.enterAdminMode();
                         break;
                     default:
                         System.out.println("올바른 번호를 입력해주세요.");
@@ -99,7 +104,7 @@ public class CommerceSystem {
                 Product p = filteredProducts.get(productSelect - 1);
                 System.out.println("★ 선택한 상품: " + p.getName() + " | " + p.getPrice() + "원 | "
                         + p.getExplanation() + " | 재고: " + p.getStock_quantity() + "개");
-                cartManager.addProduct(p);
+                cart.addProduct(p);
             } else {
                 System.out.println("올바른 상품 번호를 입력해주세요.");
             }
