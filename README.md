@@ -15,7 +15,7 @@ JAVA 커머스 콘솔 앱
 - Category.java : 카테고리/상품 조회
 - CommerceSystem.java : 주문 처리, 메인 메뉴 출력, 전체 흐름 제어
 - Main : 프로그램 시작
-- Product : 상품의 상태 정보 관리
+- Product.java : 상품의 상태 정보 관리
   
 
 구현 내용
