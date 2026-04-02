@@ -34,7 +34,7 @@ public class CommerceSystem {
             System.out.println("2. 의류");
             System.out.println("3. 식품");
             System.out.println("0. 종료          | 프로그램 종료");
-            System.out.println("관리자 모드");
+            System.out.println("6. 관리자 모드");
 
             if (!cart.isEmpty()) {
                 System.out.println("[주문 관리]");
